@@ -16,9 +16,10 @@ jobs:
         with:
           flutter-version: 3.27.3
       - name: Build
-        run: flutter pub get
-        run: flutter build apk
-        run: mv ./build/app/outputs/flutter-apk/app-release.apk ./katigatey.apk
+        run: |
+          flutter pub get
+          flutter build apk
+          mv ./build/app/outputs/flutter-apk/app-release.apk ./katigatey.apk
       - name: Release 
         uses: softprops/action-gh-release@v1
         with:
