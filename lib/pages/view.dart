@@ -10,11 +10,11 @@ class DateView extends StatefulWidget {
 }
 
 class _DateViewState extends State<DateView> {
-  var today = NepaliDate.fromGregorian(DateTime.now());
-  var gregorianToday = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
+    var today = NepaliDate.fromGregorian(DateTime.now());
+    var gregorianToday = DateTime.now();
+
     String formattedGregorian = DateFormat("MMMM d, y").format(gregorianToday);
     var textStyle = TextStyle(fontSize: 24);
     var dateStyle = TextStyle(

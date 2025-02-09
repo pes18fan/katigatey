@@ -1,6 +1,7 @@
 import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
 import "package:url_launcher/url_launcher.dart";
+import "package:package_info_plus/package_info_plus.dart";
 
 class About extends StatefulWidget {
   const About({super.key});
@@ -10,6 +11,11 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
+  Future<String> packageVersion() async {
+    var packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.version;
+  }
+
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(
@@ -26,11 +32,21 @@ class _AboutState extends State<About> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Katigatey", style: pkgNameStyle),
-              Text(" version 0.01", style: textStyle)
+              Text("Katigatey ", style: pkgNameStyle),
+              FutureBuilder(
+                  future: packageVersion(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("...");
+                    } else if (snapshot.hasError) {
+                      return Text("unknown", style: textStyle);
+                    } else {
+                      return Text(snapshot.data ?? "unknown", style: textStyle);
+                    }
+                  })
             ],
           ),
-          Text("Exceedingly simple viewer for today's Nepali date.",
+          Text("Exceedingly simple Nepali date viewer.",
               softWrap: true, style: textStyle),
           RichText(
               text: TextSpan(
@@ -39,10 +55,10 @@ class _AboutState extends State<About> {
                   children: [
                 TextSpan(
                     text: "pes18fan",
-                    style: TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                        fontSize: 18),
+                    style: textStyle.copyWith(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async {
                         final Uri url =

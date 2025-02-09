@@ -1,5 +1,5 @@
 name: katigatey
-description: "Exceedingly simple viewer for today's Nepali date"
+description: "Exceedingly simple Nepali date viewer"
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -14,6 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl: ^0.20.2
   url_launcher: ^6.3.1
+  package_info_plus: ^8.2.1
 
 dev_dependencies:
   flutter_test:

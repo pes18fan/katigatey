@@ -1,6 +1,6 @@
 # katigatey
 
-A new Flutter project.
+Exceedingly simple Nepali date viewer.
 
 ## Getting Started
 
