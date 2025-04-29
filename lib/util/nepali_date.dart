@@ -275,7 +275,7 @@ class NepaliDate {
 
   @override
   String toString() {
-    var monthStr = month < 12 ? monthName[month - 1] : month;
+    var monthStr = month <= 12 ? monthName[month - 1] : month;
 
     return "$monthStr $day, $year";
   }
